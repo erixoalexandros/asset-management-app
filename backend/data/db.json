@@ -2,11 +2,21 @@
   "assets": [
     {
       "id": 1,
-      "name": "PC-1"
+      "tagName": "EJ-200",
+      "serial": "ER4KB22",
+      "manufacturer": "Dell",
+      "model": "OptiPlex 700",
+      "year": 2018,
+      "picture": ""
     },
     {
       "id": 2,
-      "name": "PC-2"
+      "tagName": "EJ-310",
+      "serial": "4KB26PC",
+      "manufacturer": "HP",
+      "model": "Maximus 1200",
+      "year": 2020,
+      "picture": ""
     }
   ]
 }
