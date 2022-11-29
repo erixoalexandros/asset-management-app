@@ -2,13 +2,12 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import AssetsList from "./pages/AssetsList";
 import Asset from "./pages/Asset";
+import Header from "./components/Header";
 
 function App() {
   return (
     <BrowserRouter>
-      <header className="bg-blue-400 text-white mx-auto py-2 px-4 text-center">
-        Asset Management App
-      </header>
+      <Header  />
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/assets" element={<AssetsList />} />
