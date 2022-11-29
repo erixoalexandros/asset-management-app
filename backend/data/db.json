@@ -17,6 +17,15 @@
       "model": "Maximus 1200",
       "year": 2020,
       "picture": ""
+    },
+    {
+      "id": 3,
+      "tagName": "LA-810",
+      "serial": "ALRMMU",
+      "manufacturer": "Acer",
+      "model": "Predator 300",
+      "year": 2020,
+      "picture": ""
     }
   ]
 }

@@ -7,7 +7,7 @@ function AssetsList() {
 
   return (
     <div className="mt-4 space-y-4">
-      {assets.map((asset, index) => {
+      {assets.map((asset) => {
         return (
           <AssetCard
             key={asset.id}

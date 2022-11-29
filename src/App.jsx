@@ -3,7 +3,6 @@ import Home from "./pages/Home";
 import AssetsList from "./pages/AssetsList";
 import Asset from "./pages/Asset";
 import Header from "./components/Header";
-import { useEffect } from "react";
 
 function App() {
   return (
