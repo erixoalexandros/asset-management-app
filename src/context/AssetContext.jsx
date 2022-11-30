@@ -2,8 +2,19 @@ import { createContext, useState, useEffect } from "react";
 
 const AssetContext = createContext();
 
+const filteredItems = (query, items) => {
+  return items.filter((item) =>
+    item.tagName.toLowerCase().includes(query.toLowerCase())
+  );
+};
+
 export const AssetProvider = ({ children }) => {
   const [assets, setAssets] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchQuery = (text) => {
+    setSearchQuery(text);
+  };
 
   useEffect(() => {
     const fetchAssets = async () => {
@@ -19,7 +30,14 @@ export const AssetProvider = ({ children }) => {
   }, []);
 
   return (
-    <AssetContext.Provider value={assets}>{children}</AssetContext.Provider>
+    <AssetContext.Provider
+      value={{
+        assets: searchQuery ? filteredItems(searchQuery, assets) : assets,
+        handleSearchQuery,
+      }}
+    >
+      {children}
+    </AssetContext.Provider>
   );
 };
 

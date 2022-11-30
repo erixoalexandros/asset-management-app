@@ -1,24 +1,28 @@
 import AssetCard from "../components/AssetCard";
 import { useContext } from "react";
 import AssetContext from "../context/AssetContext";
+import SearchBar from "../components/SearchBar";
 
 function AssetsList() {
-  const assets = useContext(AssetContext);
+  const { assets } = useContext(AssetContext);
 
   return (
-    <div className="mt-4 space-y-4">
-      {assets.map((asset) => {
-        return (
-          <AssetCard
-            key={asset.id}
-            tagName={asset.tagName}
-            manufacturer={asset.manufacturer}
-            model={asset.model}
-            year={asset.year}
-          />
-        );
-      })}
-    </div>
+    <>
+      <SearchBar />
+      <div className="mt-4 space-y-4">
+        {assets.map((asset) => {
+          return (
+            <AssetCard
+              key={asset.id}
+              tagName={asset.tagName}
+              manufacturer={asset.manufacturer}
+              model={asset.model}
+              year={asset.year}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 }
 
