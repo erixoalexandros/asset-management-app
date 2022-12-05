@@ -18,14 +18,13 @@ export const AssetProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchAssets = async () => {
-      const response = await fetch("http://127.0.0.1:5000/assets");
+      const response = await fetch(`${import.meta.env.VITE_DATA_URL}/assets`);
       const data = await response.json();
 
       setAssets(() => {
         return [...data];
       });
     };
-
     fetchAssets();
   }, []);
 

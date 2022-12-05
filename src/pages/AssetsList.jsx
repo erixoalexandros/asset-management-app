@@ -9,19 +9,24 @@ function AssetsList() {
   return (
     <>
       <SearchBar />
-      <div className="mt-4 space-y-4">
-        {assets.map((asset) => {
-          return (
-            <AssetCard
-              key={asset.id}
-              tagName={asset.tagName}
-              manufacturer={asset.manufacturer}
-              model={asset.model}
-              year={asset.year}
-            />
-          );
-        })}
-      </div>
+      {!assets ? (
+        "Loading..."
+      ) : (
+        <div className="mt-4 space-y-4">
+          {assets.map(({ id, tagName, manufacturer, model, year }) => {
+            return (
+              <AssetCard
+                key={id}
+                id={id}
+                tagName={tagName}
+                manufacturer={manufacturer}
+                model={model}
+                year={year}
+              />
+            );
+          })}
+        </div>
+      )}
     </>
   );
 }

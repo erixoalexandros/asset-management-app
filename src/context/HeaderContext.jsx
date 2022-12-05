@@ -9,7 +9,7 @@ const locations = {
 };
 
 export const HeaderProvider = ({ children }) => {
-  const [headerTitle, setHeaderTitle] = useState("Sample Title");
+  const [headerTitle, setHeaderTitle] = useState("");
 
   const getPathName = (pathName) => {
     setHeaderTitle(locations[pathName]);
