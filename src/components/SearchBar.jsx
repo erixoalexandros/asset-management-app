@@ -14,7 +14,7 @@ function SearchBar() {
       <FaSearch className="absolute top-3 left-3 text-gray-400" />
       <input
         onChange={handleInputChange}
-        className="caret h-10 w-full border-2 indent-9 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
+        className="h-10 w-full border-2 indent-9 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
         type="text"
         name="search-asset"
         id="search-asset"

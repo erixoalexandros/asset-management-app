@@ -1,11 +1,15 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
+import AssetContext from "../context/AssetContext";
 import Card from "../components/shared/Card";
 import { FaEdit, FaTrashAlt, FaLaptop } from "react-icons/fa";
+import { RotatingLines } from "react-loader-spinner";
 
 function Asset() {
   const { id } = useParams();
   const [selectedAsset, setSelectedAsset] = useState(null);
+  const { handleEditMode } = useContext(AssetContext);
+  const navigate = useNavigate();
 
   const fetchAsset = async () => {
     const response = await fetch(
@@ -17,19 +21,35 @@ function Asset() {
     setSelectedAsset({ ...data });
   };
 
+  const handleClickEdit = () => {
+    handleEditMode();
+    navigate("/asset");
+  };
+
   useEffect(() => {
-    fetchAsset(); 
+    fetchAsset();
   }, []);
 
   return (
     <>
       <div className="mx-auto flex w-4/5 justify-end space-x-8 py-4 sm:w-2/3 lg:w-2/3 xl:w-1/3">
-        <FaEdit className="cursor-pointer text-2xl text-green-600 hover:text-green-700" />
+        <FaEdit
+          className="cursor-pointer text-2xl text-green-600 hover:text-green-700"
+          onClick={handleClickEdit}
+        />
         <FaTrashAlt className="cursor-pointer text-2xl text-red-600 hover:text-red-700" />
       </div>
       <Card>
         {!selectedAsset ? (
-          "Loading..."
+          <div className="mx-auto flex h-96 w-fit">
+            <RotatingLines
+              strokeColor="grey"
+              strokeWidth="5"
+              animationDuration="0.75"
+              width="48"
+              visible={true}
+            />
+          </div>
         ) : (
           <div className="space-y-4 py-8 px-8">
             <h3>

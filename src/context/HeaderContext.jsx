@@ -6,6 +6,7 @@ const locations = {
   "/assets": "Assets List",
   "/assets/:id": "Asset Tag Name",
   "/": "Asset Management",
+  "/asset": "Asset Form",
 };
 
 export const HeaderProvider = ({ children }) => {

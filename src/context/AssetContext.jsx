@@ -11,9 +11,14 @@ const filteredItems = (query, items) => {
 export const AssetProvider = ({ children }) => {
   const [assets, setAssets] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [editMode, setEditMode] = useState(false);
 
   const handleSearchQuery = (text) => {
     setSearchQuery(text);
+  };
+
+  const handleEditMode = () => {
+    setEditMode(!editMode);
   };
 
   useEffect(() => {
@@ -33,6 +38,8 @@ export const AssetProvider = ({ children }) => {
       value={{
         assets: searchQuery ? filteredItems(searchQuery, assets) : assets,
         handleSearchQuery,
+        editMode,
+        handleEditMode,
       }}
     >
       {children}
