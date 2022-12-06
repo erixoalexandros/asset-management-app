@@ -20,7 +20,7 @@ function Header() {
           <FaHome className="cursor-pointer text-4xl" />
         </Link>
         <h2 className="text-2xl font-semibold">{headerTitle}</h2>
-        <Link to={"/assets/:id"}>
+        <Link to={"/asset"}>
           <SiAddthis className="text-2xl" />
         </Link>
       </div>

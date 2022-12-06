@@ -23,7 +23,7 @@ export const AssetProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchAssets = async () => {
-      const response = await fetch(`${import.meta.env.VITE_DATA_URL}/assets`);
+      const response = await fetch(`${import.meta.env.VITE_DATA_URL}`);
       const data = await response.json();
 
       setAssets(() => {

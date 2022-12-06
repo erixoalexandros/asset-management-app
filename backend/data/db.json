@@ -26,6 +26,23 @@
       "model": "Predator 300",
       "year": 2020,
       "picture": ""
+    },
+    {
+      "id": 4,
+      "tagName": "MOR-810",
+      "serial": "GJTO4",
+      "manufacturer": "Acer",
+      "model": "Predator 300",
+      "year": 2020,
+      "picture": ""
+    },
+    {
+      "id": "797c1200-58d4-4834-b714-c7306054353c",
+      "tagName": "1ST-COMP",
+      "manufacturer": "MSI",
+      "model": "560RX",
+      "year": "2017",
+      "serial": "GHTIE20"
     }
   ]
 }

@@ -1,15 +1,36 @@
 import { useState } from "react";
+import { v4 as uuid } from "uuid";
 import Card from "../components/shared/Card";
 
 function AssetForm() {
-  const [year, setYear] = useState(new Date().getFullYear());
+  const [formValues, setFormValues] = useState({
+    id: uuid(),
+    tagName: "",
+    manufacturer: "",
+    model: "",
+    year: new Date().getFullYear(),
+    serial: "",
+  });
 
-  const handleYearChange = (e) => {
-    setYear(e.target.value);
+  const handleInputChange = (e) => {
+    const name = e.target.id;
+    const value = e.target.value;
+
+    setFormValues((prevState) => {
+      return { ...prevState, [name]: value };
+    });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    await fetch(`${import.meta.env.VITE_DATA_URL}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(formValues),
+    });
   };
 
   return (
@@ -24,7 +45,9 @@ function AssetForm() {
           </label>
           <input
             type="text"
-            id="tag-name"
+            id="tagName"
+            value={formValues.tagName}
+            onChange={handleInputChange}
             required
             placeholder="Tag Name..."
             className="mb-8 h-10 w-full border-2 indent-2 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
@@ -35,6 +58,8 @@ function AssetForm() {
           <input
             type="text"
             id="manufacturer"
+            value={formValues.manufacturer}
+            onChange={handleInputChange}
             required
             placeholder="Manufacturer..."
             className="mb-8 h-10 w-full border-2 indent-2 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
@@ -45,6 +70,8 @@ function AssetForm() {
           <input
             type="text"
             id="model"
+            value={formValues.model}
+            onChange={handleInputChange}
             required
             placeholder="Model..."
             className="mb-8 h-10 w-full border-2 indent-2 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
@@ -58,9 +85,9 @@ function AssetForm() {
             min="2005"
             max={new Date().getFullYear().toString()}
             placeholder="YYYY"
-            value={year.toString()}
+            value={formValues.year.toString()}
+            onChange={handleInputChange}
             required
-            onChange={handleYearChange}
             className="mb-8 h-10 w-full border-2 indent-2 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
           />
           <label htmlFor="serial" className="mb-2 font-semibold">
@@ -69,6 +96,8 @@ function AssetForm() {
           <input
             type="text"
             id="serial"
+            value={formValues.serial}
+            onChange={handleInputChange}
             required
             placeholder="Serial..."
             className="mb-8 h-10 w-full border-2 indent-2 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"

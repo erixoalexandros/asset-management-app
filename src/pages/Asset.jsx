@@ -12,9 +12,7 @@ function Asset() {
   const navigate = useNavigate();
 
   const fetchAsset = async () => {
-    const response = await fetch(
-      `${import.meta.env.VITE_DATA_URL}/assets/${id}`
-    );
+    const response = await fetch(`${import.meta.env.VITE_DATA_URL}/${id}`);
 
     const data = await response.json();
 
