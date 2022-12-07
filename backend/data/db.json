@@ -31,6 +31,22 @@
       "model": "Monster",
       "year": "2022",
       "serial": "Z111200"
+    },
+    {
+      "id": "ae745232-bf7d-462b-a39d-18826b16a10d",
+      "tagName": "OTM-400",
+      "manufacturer": "HP",
+      "model": "Monster",
+      "year": "2012",
+      "serial": "500696"
     }
-  ]
+  ],
+  "users": [
+    {
+      "id": "",
+      "name": "",
+      "email": ""
+    }
+  ],
+  "check-outs": []
 }

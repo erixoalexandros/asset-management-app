@@ -1,0 +1,42 @@
+TABLES:
+
+-----------------------------
+Asset:
+-----------------------------
+
+Id (String): Primary Key, Unique
+Tag Name (String) Unique
+Manufacturer (String)
+Model (String)
+Year (String)
+Serial (String) Unique
+Location (String)
+	- Loc 1
+	- Loc 2
+	- Loc 3
+Condition (String)
+	- New
+	- Good
+    - Partially Broken
+	- Broken
+	- Missing
+Status (String)
+	- Available
+	- Checked Out
+	- Not Available
+Picture (String)
+
+-----------------------------
+User:
+-----------------------------
+Id (String): Primary Key, Unique
+Name (String)
+Email (String): Unique
+
+-----------------------------
+Check-Out:
+-----------------------------
+Id (String): Primary Key, Unique
+Date (Datetime)
+User (Foreign Key - User)
+Asset (Foreign Key - User)
