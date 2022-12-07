@@ -23,6 +23,14 @@
       "model": "Aspire 5",
       "year": "2018",
       "serial": "BR9153"
+    },
+    {
+      "id": "a37aa1cb-3f5a-4d90-8e90-446ec3e4d5f4",
+      "tagName": "NAV-LAP-200",
+      "manufacturer": "Acer",
+      "model": "Monster",
+      "year": "2022",
+      "serial": "Z111200"
     }
   ]
 }

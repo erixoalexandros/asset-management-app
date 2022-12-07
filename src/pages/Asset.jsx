@@ -42,7 +42,7 @@ function Asset() {
 
   return (
     <>
-      <div className="mx-auto flex w-4/5 justify-end space-x-8 py-4 sm:w-2/3 lg:w-2/3 xl:w-1/3">
+      <div className="mx-auto flex w-4/5 justify-end space-x-8 py-4 sm:w-2/3 md:w-3/5 lg:w-2/5 xl:w-1/3">
         <FaEdit
           className="cursor-pointer text-2xl text-green-600 hover:text-green-700"
           onClick={handleClickEdit}
