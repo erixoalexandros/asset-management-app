@@ -1,48 +1,28 @@
 {
   "assets": [
     {
-      "id": 1,
-      "tagName": "EJ-200",
-      "serial": "ER4KB22",
-      "manufacturer": "Dell",
-      "model": "OptiPlex 700",
-      "year": 2018,
-      "picture": ""
+      "id": "a1e097f1-1834-4e4b-815b-f5a09372f07d",
+      "tagName": "LAP-IRS-02",
+      "manufacturer": "Lenovo",
+      "model": "ThinkPad",
+      "year": "2020",
+      "serial": "LEW-2021"
     },
     {
-      "id": 2,
-      "tagName": "EJ-310",
-      "serial": "4KB26PC",
-      "manufacturer": "HP",
-      "model": "Maximus 1200",
-      "year": 2020,
-      "picture": ""
-    },
-    {
-      "id": 3,
-      "tagName": "LA-810",
-      "serial": "ALRMMU",
+      "tagName": "erixo-laptop",
       "manufacturer": "Acer",
-      "model": "Predator 300",
-      "year": 2020,
-      "picture": ""
+      "model": "Helios Predator 300",
+      "year": "2020",
+      "serial": "EJ8721",
+      "id": "b58c7366-1808-4198-919b-d9315a5a3493"
     },
     {
-      "id": 4,
-      "tagName": "MOR-810",
-      "serial": "GJTO4",
+      "id": "a958f1ee-383b-4677-8d83-614d1138f6f4",
+      "tagName": "Sunflower",
       "manufacturer": "Acer",
-      "model": "Predator 300",
-      "year": 2020,
-      "picture": ""
-    },
-    {
-      "id": "797c1200-58d4-4834-b714-c7306054353c",
-      "tagName": "1ST-COMP",
-      "manufacturer": "MSI",
-      "model": "560RX",
-      "year": "2017",
-      "serial": "GHTIE20"
+      "model": "Aspire 5",
+      "year": "2018",
+      "serial": "BR9153"
     }
   ]
 }

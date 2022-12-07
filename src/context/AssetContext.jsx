@@ -13,14 +13,6 @@ export const AssetProvider = ({ children }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [editMode, setEditMode] = useState(false);
 
-  const handleSearchQuery = (text) => {
-    setSearchQuery(text);
-  };
-
-  const handleEditMode = () => {
-    setEditMode(!editMode);
-  };
-
   useEffect(() => {
     const fetchAssets = async () => {
       const response = await fetch(`${import.meta.env.VITE_DATA_URL}`);
@@ -30,8 +22,36 @@ export const AssetProvider = ({ children }) => {
         return [...data];
       });
     };
+
     fetchAssets();
   }, []);
+
+  const handleSearchQuery = (text) => {
+    setSearchQuery(text);
+  };
+
+  const handleEditMode = (status) => {
+    setEditMode(status);
+  };
+
+  const handleAssetCreate = (newAsset) => {
+    setAssets((prevState) => [...prevState, newAsset]);
+  };
+
+  const handleAssetEdit = (editedAsset) => {
+    setAssets((prevState) =>
+      prevState.map((asset) => {
+        if (asset.id === editedAsset.id) {
+          return editedAsset;
+        }
+        return asset;
+      })
+    );
+  };
+
+  const handleAssetDelete = (id) => {
+    setAssets((prevState) => prevState.filter((asset) => asset.id !== id));
+  };
 
   return (
     <AssetContext.Provider
@@ -40,6 +60,9 @@ export const AssetProvider = ({ children }) => {
         handleSearchQuery,
         editMode,
         handleEditMode,
+        handleAssetCreate,
+        handleAssetEdit,
+        handleAssetDelete,
       }}
     >
       {children}

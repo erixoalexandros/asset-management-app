@@ -8,7 +8,7 @@ import { RotatingLines } from "react-loader-spinner";
 function Asset() {
   const { id } = useParams();
   const [selectedAsset, setSelectedAsset] = useState(null);
-  const { handleEditMode } = useContext(AssetContext);
+  const { handleEditMode, handleAssetDelete } = useContext(AssetContext);
   const navigate = useNavigate();
 
   const fetchAsset = async () => {
@@ -20,8 +20,20 @@ function Asset() {
   };
 
   const handleClickEdit = () => {
-    handleEditMode();
-    navigate("/asset");
+    handleEditMode(true);
+    navigate(`/assets/edit/${id}`);
+  };
+
+  const handleClickDelete = () => {
+    if (window.confirm("Are you sure you want to delete this asset?")) {
+      fetch(`${import.meta.env.VITE_DATA_URL}/${id}`, {
+        method: "DELETE",
+      });
+
+      handleAssetDelete(id);
+
+      navigate("/assets");
+    }
   };
 
   useEffect(() => {
@@ -34,8 +46,13 @@ function Asset() {
         <FaEdit
           className="cursor-pointer text-2xl text-green-600 hover:text-green-700"
           onClick={handleClickEdit}
+          title="Edit Asset"
         />
-        <FaTrashAlt className="cursor-pointer text-2xl text-red-600 hover:text-red-700" />
+        <FaTrashAlt
+          className="cursor-pointer text-2xl text-red-600 hover:text-red-700"
+          onClick={handleClickDelete}
+          title="Delete Asset"
+        />
       </div>
       <Card>
         {!selectedAsset ? (

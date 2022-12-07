@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import AssetsList from "./pages/AssetsList";
 import Asset from "./pages/Asset";
@@ -13,7 +13,8 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route path="/assets" element={<AssetsList />} />
         <Route path="/assets/:id" element={<Asset />} />
-        <Route path="/asset" element={<AssetForm />} />
+        <Route path="/assets/edit/:id" element={<AssetForm />} />
+        <Route path="/assets/new" element={<AssetForm />} />
       </Routes>
     </>
   );

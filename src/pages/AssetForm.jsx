@@ -1,16 +1,44 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import AssetContext from "../context/AssetContext";
 import { v4 as uuid } from "uuid";
 import Card from "../components/shared/Card";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+
+const initialFormValues = {
+  id: "",
+  tagName: "",
+  manufacturer: "",
+  model: "",
+  year: "",
+  serial: "",
+};
 
 function AssetForm() {
-  const [formValues, setFormValues] = useState({
-    id: uuid(),
-    tagName: "",
-    manufacturer: "",
-    model: "",
-    year: new Date().getFullYear(),
-    serial: "",
-  });
+  const {
+    assets,
+    handleAssetCreate,
+    handleAssetEdit,
+    editMode,
+    handleEditMode,
+  } = useContext(AssetContext);
+
+  const [formValues, setFormValues] = useState(initialFormValues);
+
+  const navigate = useNavigate();
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (editMode) {
+      setFormValues(assets.find((asset) => asset.id === id));
+    } else {
+      setFormValues({
+        ...initialFormValues,
+        id: uuid(),
+        year: new Date().getFullYear().toString(),
+      });
+    }
+  }, [editMode]);
 
   const handleInputChange = (e) => {
     const name = e.target.id;
@@ -24,20 +52,32 @@ function AssetForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    await fetch(`${import.meta.env.VITE_DATA_URL}`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "POST",
-      body: JSON.stringify(formValues),
-    });
+    await fetch(
+      `${import.meta.env.VITE_DATA_URL}${editMode ? `/${formValues.id}` : "/"}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: `${editMode ? "PUT" : "POST"}`,
+        body: JSON.stringify(formValues),
+      }
+    );
+
+    if (editMode) {
+      handleAssetEdit(formValues);
+      handleEditMode(false);
+    } else {
+      handleAssetCreate(formValues);
+    }
+
+    navigate(`/assets/${formValues.id}`);
   };
 
   return (
     <div className="mt-4">
       <Card>
-        <h2 className="px-4 py-4 text-3xl font-semibold text-gray-500">
-          New Asset:
+        <h2 className="px-4 py-4 text-3xl font-semibold text-green-600">
+          {`${editMode ? "EDIT" : "CREATE"} ASSET:`}
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col px-4 py-4">
           <label htmlFor="tag-name" className="mb-2 font-semibold">
@@ -50,7 +90,7 @@ function AssetForm() {
             onChange={handleInputChange}
             required
             placeholder="Tag Name..."
-            className="mb-8 h-10 w-full border-2 indent-2 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
+            className="mb-8 h-10 w-full border-2 indent-2 text-gray-700 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
           />
           <label htmlFor="manufacturer" className="mb-2 font-semibold">
             Manufacturer:
@@ -62,7 +102,7 @@ function AssetForm() {
             onChange={handleInputChange}
             required
             placeholder="Manufacturer..."
-            className="mb-8 h-10 w-full border-2 indent-2 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
+            className="mb-8 h-10 w-full border-2 indent-2 text-gray-700 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
           />
           <label htmlFor="model" className="mb-2 font-semibold">
             Model:
@@ -74,7 +114,7 @@ function AssetForm() {
             onChange={handleInputChange}
             required
             placeholder="Model..."
-            className="mb-8 h-10 w-full border-2 indent-2 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
+            className="mb-8 h-10 w-full border-2 indent-2 text-gray-700 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
           />
           <label htmlFor="year" className="mb-2 font-semibold">
             Year:
@@ -85,10 +125,10 @@ function AssetForm() {
             min="2005"
             max={new Date().getFullYear().toString()}
             placeholder="YYYY"
-            value={formValues.year.toString()}
+            value={formValues.year}
             onChange={handleInputChange}
             required
-            className="mb-8 h-10 w-full border-2 indent-2 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
+            className="mb-8 h-10 w-full border-2 indent-2 text-gray-700 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
           />
           <label htmlFor="serial" className="mb-2 font-semibold">
             Serial:
@@ -100,11 +140,11 @@ function AssetForm() {
             onChange={handleInputChange}
             required
             placeholder="Serial..."
-            className="mb-8 h-10 w-full border-2 indent-2 text-gray-500 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
+            className="mb-8 h-10 w-full border-2 indent-2 text-gray-700 caret-gray-400 hover:border-gray-300 focus:outline-blue-300"
           />
           <button
             type="submit"
-            className="mx-auto w-full rounded-md bg-green-600 px-4  py-2 text-xl text-white hover:bg-green-700"
+            className="mx-auto mt-4 w-full rounded-md bg-green-600 px-4 py-2 text-xl text-white hover:bg-green-700"
           >
             Submit
           </button>
